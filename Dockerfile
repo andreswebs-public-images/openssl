@@ -2,17 +2,21 @@ FROM alpine:latest
 
 RUN apk add --no-cache openssl
 
-ARG PUID=1000
-ARG PGID=1000
+ARG APP_UID="2000"
+ARG APP_GID="2000"
+ARG APP_USER="app"
+ARG APP_GROUP="app"
 
 RUN \
-    addgroup -g "${PGID}" app && \
+    addgroup -g "${APP_GID}" "${APP_GROUP}" && \
     adduser \
-      -u "${PUID}" \
-      -G app \
-      -h /app \
+      -u "${APP_UID}" \
+      -g "" \
+      -G "${APP_GROUP}" \
+      -h "/home/${APP_USER}}" \
       -D \
-      app
+      -s "/bin/sh" \
+      "${APP_USER}"
 
 ENV  \
   HOST_IP="0.0.0.0" \
