@@ -13,7 +13,7 @@ RUN \
       -u "${APP_UID}" \
       -g "" \
       -G "${APP_GROUP}" \
-      -h "/home/${APP_USER}}" \
+      -h "/home/${APP_USER}" \
       -D \
       -s "/bin/sh" \
       "${APP_USER}"
